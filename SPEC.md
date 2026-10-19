@@ -14,7 +14,7 @@ Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstr
 | array_size | `--array-size` | smoke=1048576, baseline=268435456, extended=536870912 | 268435456 | From Parameter list; see Execution Description With Parameters. |
 | kernels | `--kernels` | smoke=Copy,Mul,Add,Triad,Dot, baseline=Copy,Mul,Add,Triad,Dot, extended=Copy,Mul,Add,Triad,Dot | Copy,Mul,Add,Triad,Dot | From Parameter list; see Execution Description With Parameters. |
 | warmup_iters | `--warmup-iters` | smoke=1, baseline=2, extended=5 | 2 | From Parameter list; see Execution Description With Parameters. |
-| num_iterations | `--num-iterations` | smoke=2, baseline=30000, extended=35550 | 30000 | From Parameter list; see Execution Description With Parameters. |
+| num_iterations | `--num-iterations` | smoke=2, baseline=17600, extended=26500 | 17600 | From Parameter list; see Execution Description With Parameters. |
 | output_format | `--output-format` | smoke=csv, baseline=csv, extended=csv | csv | From Parameter list; see Execution Description With Parameters. |
 
 ## Invocation

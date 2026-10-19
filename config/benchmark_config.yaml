@@ -22,6 +22,6 @@ sweep:
     extended: 5
   num_iterations:
     smoke: 2
-    baseline: 30000
-    extended: 35550
+    baseline: 17600
+    extended: 26500
   output_format: csv
