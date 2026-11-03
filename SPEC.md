@@ -2,20 +2,17 @@
 
 ## Execution Description
 
-Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column Sweep dimensions: device_id, dtype, block_size, array_size, kernels, warmup_iters, num_iterations, output_format.
+Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column Sweep dimensions: device_id, block_size, array_size, warmup_iters, num_iterations.
 
 ## Parameters
 
 | Parameter | CLI Flag | Tested Values | Default | Description |
 | --- | --- | --- | --- | --- |
 | device_id | `--device-id` | smoke=0, baseline=0, extended=0 | 0 | From Parameter list; see Execution Description With Parameters. |
-| dtype | `--dtype` | smoke=FP64, baseline=FP64, extended=FP64 | FP64 | From Parameter list; see Execution Description With Parameters. |
 | block_size | `--block-size` | smoke=256, baseline=256, extended=256 | 256 | From Parameter list; see Execution Description With Parameters. |
 | array_size | `--array-size` | smoke=67108864, baseline=268435456, extended=536870912 | 268435456 | From Parameter list; see Execution Description With Parameters. |
-| kernels | `--kernels` | smoke=Copy,Mul,Add,Triad,Dot, baseline=Copy,Mul,Add,Triad,Dot, extended=Copy,Mul,Add,Triad,Dot | Copy,Mul,Add,Triad,Dot | From Parameter list; see Execution Description With Parameters. |
 | warmup_iters | `--warmup-iters` | smoke=1, baseline=2, extended=5 | 2 | From Parameter list; see Execution Description With Parameters. |
 | num_iterations | `--num-iterations` | smoke=20, baseline=17600, extended=26500 | 17600 | From Parameter list; see Execution Description With Parameters. |
-| output_format | `--output-format` | smoke=csv, baseline=csv, extended=csv | csv | From Parameter list; see Execution Description With Parameters. |
 
 ## Invocation
 

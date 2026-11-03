@@ -9,13 +9,11 @@
 sweep:
   profile: smoke
   device_id: 0
-  dtype: FP64
   block_size: 256
   array_size:
     smoke: 67108864
     baseline: 268435456
     extended: 536870912
-  kernels: Copy,Mul,Add,Triad,Dot
   warmup_iters:
     smoke: 1
     baseline: 2
@@ -24,4 +22,3 @@ sweep:
     smoke: 20
     baseline: 17600
     extended: 26500
-  output_format: csv

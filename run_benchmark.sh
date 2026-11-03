@@ -46,13 +46,10 @@ Validation and logging:
 
 Workload options:
   --device-id <value>            Override device_id
-  --dtype <value>            Override dtype
   --block-size <value>            Override block_size
   --array-size <value>            Override array_size
-  --kernels <value>            Override kernels
   --warmup-iters <value>            Override warmup_iters
   --num-iterations <value>            Override num_iterations
-  --output-format <value>            Override output_format
 
 Information:
   --specification               Print this workload's specification and exit
@@ -87,13 +84,10 @@ LOG_LEVEL_VALUE="INFO"
 OUTPUT_FORMAT=""
 SAVE_OPTIONS_FILE=""
 DEVICE_ID=""
-DTYPE=""
 BLOCK_SIZE=""
 ARRAY_SIZE=""
-KERNELS=""
 WARMUP_ITERS=""
 NUM_ITERATIONS=""
-OUTPUT_FORMAT=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -115,13 +109,10 @@ while [[ $# -gt 0 ]]; do
     --output-format) OUTPUT_FORMAT="${2:-}"; shift 2 ;;
     --save-options-file) SAVE_OPTIONS_FILE="${2:-}"; shift 2 ;;
     --device-id) DEVICE_ID="${2:-}"; shift 2 ;;
-    --dtype) DTYPE="${2:-}"; shift 2 ;;
     --block-size) BLOCK_SIZE="${2:-}"; shift 2 ;;
     --array-size) ARRAY_SIZE="${2:-}"; shift 2 ;;
-    --kernels) KERNELS="${2:-}"; shift 2 ;;
     --warmup-iters) WARMUP_ITERS="${2:-}"; shift 2 ;;
     --num-iterations) NUM_ITERATIONS="${2:-}"; shift 2 ;;
-    --output-format) OUTPUT_FORMAT="${2:-}"; shift 2 ;;
     --help|--specification|--matrix-definition) shift ;;
     *) die "Unknown option: $1" ;;
   esac
@@ -161,26 +152,20 @@ PY
 }
 
 DEVICE_ID="${DEVICE_ID:-$(yaml_get device_id)}"
-DTYPE="${DTYPE:-$(yaml_get dtype)}"
 BLOCK_SIZE="${BLOCK_SIZE:-$(yaml_get block_size)}"
 ARRAY_SIZE="${ARRAY_SIZE:-$(yaml_get array_size)}"
-KERNELS="${KERNELS:-$(yaml_get kernels)}"
 WARMUP_ITERS="${WARMUP_ITERS:-$(yaml_get warmup_iters)}"
 NUM_ITERATIONS="${NUM_ITERATIONS:-$(yaml_get num_iterations)}"
-OUTPUT_FORMAT="${OUTPUT_FORMAT:-$(yaml_get output_format)}"
 OUTPUT_FORMAT="${OUTPUT_FORMAT:-$(yaml_get output_format)}"
 OUTPUT_FORMAT="${OUTPUT_FORMAT:-csv}"
 
 BENCHMARK_RUN_COMMAND="bash run_benchmark.sh --${PROFILE}"
 [[ "${VALIDATE}" -eq 1 ]] && BENCHMARK_RUN_COMMAND+=" --validate"
 [[ -n "${DEVICE_ID}" ]] && BENCHMARK_RUN_COMMAND+=" --device-id $(printf %q "${DEVICE_ID}")"
-[[ -n "${DTYPE}" ]] && BENCHMARK_RUN_COMMAND+=" --dtype $(printf %q "${DTYPE}")"
 [[ -n "${BLOCK_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --block-size $(printf %q "${BLOCK_SIZE}")"
 [[ -n "${ARRAY_SIZE}" ]] && BENCHMARK_RUN_COMMAND+=" --array-size $(printf %q "${ARRAY_SIZE}")"
-[[ -n "${KERNELS}" ]] && BENCHMARK_RUN_COMMAND+=" --kernels $(printf %q "${KERNELS}")"
 [[ -n "${WARMUP_ITERS}" ]] && BENCHMARK_RUN_COMMAND+=" --warmup-iters $(printf %q "${WARMUP_ITERS}")"
 [[ -n "${NUM_ITERATIONS}" ]] && BENCHMARK_RUN_COMMAND+=" --num-iterations $(printf %q "${NUM_ITERATIONS}")"
-[[ -n "${OUTPUT_FORMAT}" ]] && BENCHMARK_RUN_COMMAND+=" --output-format $(printf %q "${OUTPUT_FORMAT}")"
 set_benchmark_run_command "${BENCHMARK_RUN_COMMAND}"
 
 HOSTNAME_VALUE="$(hostname -s 2>/dev/null || hostname)"
@@ -224,13 +209,10 @@ run_collection() {
   fi
   grep -q -- '--output-format' <<<"${help}" && collect_args+=(--output-format "${OUTPUT_FORMAT}")
   grep -q -- '--device-id' <<<"${help}" && collect_args+=(--device-id "${DEVICE_ID}")
-  grep -q -- '--dtype' <<<"${help}" && collect_args+=(--dtype "${DTYPE}")
   grep -q -- '--block-size' <<<"${help}" && collect_args+=(--block-size "${BLOCK_SIZE}")
   grep -q -- '--array-size' <<<"${help}" && collect_args+=(--array-size "${ARRAY_SIZE}")
-  grep -q -- '--kernels' <<<"${help}" && collect_args+=(--kernels "${KERNELS}")
   grep -q -- '--warmup-iters' <<<"${help}" && collect_args+=(--warmup-iters "${WARMUP_ITERS}")
   grep -q -- '--num-iterations' <<<"${help}" && collect_args+=(--num-iterations "${NUM_ITERATIONS}")
-  grep -q -- '--output-format' <<<"${help}" && collect_args+=(--output-format "${OUTPUT_FORMAT}")
 
   printf -v collect_cmd '%q ' "${PYTHON_BIN}" scripts/collect_workload.py "${collect_args[@]}"
   echo "[RUN] ${collect_cmd}"
