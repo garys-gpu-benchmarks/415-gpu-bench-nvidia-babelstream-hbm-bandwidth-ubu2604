@@ -2,7 +2,7 @@
 
 ## Execution Description
 
-Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column Sweep dimensions: device_id, block_size, array_size, warmup_iters, num_iterations.
+Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column. Sweep dimensions: device_id, block_size, array_size, warmup_iters, num_iterations.
 
 ## Parameters
 
