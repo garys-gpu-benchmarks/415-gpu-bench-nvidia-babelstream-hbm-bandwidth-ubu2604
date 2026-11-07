@@ -16,11 +16,11 @@ capture_benchmark_run_command_submitted "$@"
 
 usage() {
   cat <<'USAGE'
+
 Usage: bash run_benchmark.sh [OPTIONS]
 
 Workload Name:          BabelStream HBM Bandwidth.
 Main Goal:              Measure sustained BabelStream HBM bandwidth.
-Validation Objective:   Validates Copy, Mul, Add, Triad, and Dot bandwidth from one BabelStream run.
 Command Tools Executed: Compile babelstream.cu with nvcc; run bin/babelstream via
                         collect_babelstream.py.
 
