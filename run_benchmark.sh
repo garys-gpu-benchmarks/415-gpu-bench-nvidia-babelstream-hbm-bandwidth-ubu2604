@@ -32,9 +32,18 @@ Profiles (default: --smoke):
 Parameters (override the profile's value):
   --device-id <value>           Target accelerator or device identifier (smoke/baseline/extended: 0)
   --block-size <value>          Work unit or block size (smoke/baseline/extended: 256)
-  --array-size <n>              Number of elements in benchmark arrays (smoke 67108864, baseline 268435456, extended 536870912)
-  --warmup-iters <n>            Untimed warm-up repetitions before measurement (smoke 1, baseline 2, extended 5)
-  --num-iterations <n>          Number of timed repetitions (smoke 20, baseline 17600, extended 26500)
+  --array-size <n>              Number of elements in benchmark arrays
+                                  smoke:    67108864
+                                  baseline: 268435456
+                                  extended: 536870912
+  --warmup-iters <n>            Untimed warm-up repetitions before measurement
+                                  smoke:    1
+                                  baseline: 2
+                                  extended: 5
+  --num-iterations <n>          Number of timed repetitions
+                                  smoke:    20
+                                  baseline: 17600
+                                  extended: 26500
 
 General options:
   --config <file>               Config file (default: config/benchmark_config.yaml)
