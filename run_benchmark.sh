@@ -19,10 +19,10 @@ usage() {
 
 Usage: bash run_benchmark.sh [OPTIONS]
 
-Workload Name:          BabelStream HBM Bandwidth.
-Main Goal:              Measure sustained BabelStream HBM bandwidth.
+Workload Name:          BabelStream HBM Bandwidth
+Main Goal:              Measure sustained BabelStream HBM bandwidth
 Command Tools Executed: Compile babelstream.cu with nvcc; run bin/babelstream via
-                        collect_babelstream.py.
+                        collect_babelstream.py
 
 Profiles (default: --smoke):
   --smoke                       Run smoke profile
