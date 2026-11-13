@@ -40,6 +40,11 @@
     "value": "Compile babelstream.cu with nvcc; run bin/babelstream via collect_babelstream.py"
   },
   {
+    "field_name": "Execution Description With Parameters",
+    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
+    "value": "Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column. block_size must be a power of two from 32 to 1024 (tree reduction in the Dot kernel)"
+  },
+  {
     "field_name": "Metrics",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "#1: Copy bandwidth (bandwidth_gb_s_copy); #2: Mul bandwidth (bandwidth_gb_s_mul); #3: Add bandwidth (bandwidth_gb_s_add); #4: Triad bandwidth (bandwidth_gb_s_triad); #5: Dot bandwidth (bandwidth_gb_s_dot)"
@@ -173,11 +178,6 @@
     "field_name": "Command Methodology",
     "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
     "value": "Compile src/babelstream.cu with nvcc and run bin/babelstream once on FP64 arrays. Parse Copy, Mul, Add, Triad, and Dot bandwidth and copy those five values onto kernel-labeled rows. yaml dtype is recorded but does not switch the kernel off FP64"
-  },
-  {
-    "field_name": "Execution Description With Parameters",
-    "source_file": "BenchmarkSpecDefinitions.xlsx::Workload_Definitions",
-    "value": "Builds src/babelstream.cu (FP64 device arrays) and runs scripts/collect_babelstream.py. device_id, array_size, block_size, warmup_iters, and num_iterations come from yaml. dtype is recorded in CSV but the CUDA kernel always uses double. kernels Copy/Mul/Add/Triad/Dot all run; there is no per-kernel time or percent-of-peak column. block_size must be a power of two from 32 to 1024 (tree reduction in the Dot kernel)"
   },
   {
     "field_name": "Execution Domain",
